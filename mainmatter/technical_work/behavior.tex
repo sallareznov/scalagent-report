@@ -1,7 +1,29 @@
 \section{Behavior}
 \label{sec:Behavior}
 \subsection{Particles}
+Our particles behave as following: Each particle has directions on X-axis and Y-axis (-1, 0, +1). At each round each particle move one place in Moors-neighbors\cite{moore} according to its directions.\\
+They will check the next possible position is empty, if it is not they choose randomly the first empty position in Moors-neighbors.
+
+The method responsible of getting the next position checks whether the environment is toroidal or not.\\
+If it is not the next possible position if a particle reaches the wall would be the next position after multiplying the direction by -1.\\ Otherwise if the environment is toroidal then particles can get throw walls and next possible position would be the first position on the other side of the environment.
+
+At the beginning, All particles are distributed randomly in the environment with random directions.
+
 \subsection{Wator}
+WatorAgent is an agent that has an age and breed counter.  Each WatorAgent can move randomly one step at a time in a toroidal environment. Also WatorAgent can breed if its breed counter has reached the fertility time (the number of round an agent must exist before reproducing)
 \subsubsection{Tuna}
+Tuna do not die if it has not been eaten. At each round tuna try to move randomly within Moors-neighbors - if there is an empty position. If it is the case, tuna will try to reproduce if it can, by moving to the next empty position and leaving a new tuna in its place. If there are no empty place around, tuna will stay in its place and won't breed.
 \subsubsection{Shark}
+Shark has starvation counter, shark can die if it reach its starvation point. the first thing a shark will do is to check if it has reached the starvation point and die.\\
+If not, a shark looks around within Moors-neighbors if there is a tuna, if yes it will move and eat it. At the same time if a shark can reproduce, it will reproduce by moving to the next position occupied by a tuna and leaving a new shark in its place.\\
+If there are no near tuna, a shark will try to move randomly within Moors-neighbors and reproduce if it can.\\
+If there are no empty place around then the shark will stay in its place and won't breed.
+
 \subsection{Hunt}
+\subsubsection{Prey}
+
+\subsubsection{Predator}
+
+\subsubsection{Obstacle}
+Obstacles are agents that do nothing besides occupying places inside the environment.
+
