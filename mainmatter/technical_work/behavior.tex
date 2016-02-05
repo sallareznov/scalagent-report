@@ -12,7 +12,7 @@ At the beginning, All particles are distributed randomly in the environment with
 \subsection{Wator}
 WatorAgent is an agent that has an age and breed counter.  Each WatorAgent can move randomly one step at a time in a toroidal environment. Also WatorAgent can breed if its breed counter has reached the fertility time (the number of round an agent must exist before reproducing)
 \subsubsection{Tuna}
-Tuna do not die if it has not been eaten. At each round tuna try to move randomly within Moors-neighbors - if there is an empty position. If it is the case, tuna will try to reproduce if it can, by moving to the next empty position and leaving a new tuna in its place. If there are no empty place around, tuna will stay in its place and won't breed.
+Tunas agents do not die if it has not been eaten. At each round tunas try to move randomly within Moors-neighbors - if there is an empty position. If it is the case, a tuna will try to reproduce if it can, by moving to the next empty position and leaving a new tuna in its place. If there are no empty place around, tuna will stay in its place and won't breed.
 \subsubsection{Shark}
 Shark has starvation counter, shark can die if it reach its starvation point. the first thing a shark will do is to check if it has reached the starvation point and die.\\
 If not, a shark looks around within Moors-neighbors if there is a tuna, if yes it will move and eat it. At the same time if a shark can reproduce, it will reproduce by moving to the next position occupied by a tuna and leaving a new shark in its place.\\
@@ -20,9 +20,13 @@ If there are no near tuna, a shark will try to move randomly within Moors-neighb
 If there are no empty place around then the shark will stay in its place and won't breed.
 
 \subsection{Hunt}
+
 \subsubsection{Prey}
+Prey is an agent that has directions on X-axis and Y-axis (-1, 0, +1) in a toroidal environment. The prey keeps on moving one or more step at a time (it depends on the parameter \textit{speed ratio between prey and predators}) in the same direction. User can change the direction of a prey by pressing  up, down, left or right button on the keyboard.\\
+If a prey reaches an obstacle it stops (direction on both X and Y axis becomes 0). 
 
 \subsubsection{Predator}
+Predators are agents that move within Moors-neighbors in a torodial environment. Predators use Dijkstra's algorithm to choose a next position in order to catch the prey.
 
 \subsubsection{Obstacle}
 Obstacles are agents that do nothing besides occupying places inside the environment.
