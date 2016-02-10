@@ -1,32 +1,31 @@
 \section{Behavior}
 \label{sec:Behavior}
 \subsection{Particles}
-Our particles behave as following: Each particle has directions on X-axis and Y-axis (-1, 0, +1). At each round each particle move one place in Moors-neighbors\cite{moore} according to its directions.\\
-They will check the next possible position is empty, if it is not they choose randomly the first empty position in Moors-neighbors.
+Our particles behave as following: Each particle has directions on X-axis and Y-axis (-1, 0, +1). At each round, each particle will check if the next possible in the given neighborhood (Moore's or Von Neumann's), and according to its direction is free. If it is, it moves to that position. If not (i.e. it clashed with another particle in the environment), it randomly choose an empty position in the given neighborhood.
 
 The method responsible of getting the next position checks whether the environment is toroidal or not.\\
-If it is not the next possible position if a particle reaches the wall would be the next position after multiplying the direction by -1.\\ Otherwise if the environment is toroidal then particles can get throw walls and next possible position would be the first position on the other side of the environment.
+If the environment is not toroidal, the next possible position if a particle reaches the wall would be the next position after multiplying the direction by -1.\\ Otherwise if the environment is toroidal, then particles can get throw walls and next possible position would be the first position on the other side of the environment.
 
 At the beginning, All particles are distributed randomly in the environment with random directions.
 
 \subsection{Wator}
-WatorAgent is an agent that has an age and breed counter.  Each WatorAgent can move randomly one step at a time in a toroidal environment. Also WatorAgent can breed if its breed counter has reached the fertility time (the number of round an agent must exist before reproducing)
+WatorAgent (a tuna or a shark) is an agent that has an age and breed counter.  Each WatorAgent can move randomly one step at a time in a toroidal environment. Also WatorAgent can breed if its breed counter has reached the fertility time (the number of rounds an agent must exist before reproducing).
 \subsubsection{Tuna}
-Tunas agents do not die if it has not been eaten. At each round tunas try to move randomly within Moors-neighbors - if there is an empty position. If it is the case, a tuna will try to reproduce if it can, by moving to the next empty position and leaving a new tuna in its place. If there are no empty place around, tuna will stay in its place and won't breed.
+Tunas agents do not die if they haven't been eaten. At each round, tunas try to move randomly within Moore's neighborhood - if there is an empty position. If it is the case, a tuna will try to reproduce if it can, by moving to the next empty position, and leaves a child at its old position if it can reproduce. If there are no empty place around, tuna do not move and do not breed.
 \subsubsection{Shark}
-Shark has starvation counter, shark can die if it reach its starvation point. the first thing a shark will do is to check if it has reached the starvation point and die.\\
-If not, a shark looks around within Moors-neighbors if there is a tuna, if yes it will move and eat it. At the same time if a shark can reproduce, it will reproduce by moving to the next position occupied by a tuna and leaving a new shark in its place.\\
-If there are no near tuna, a shark will try to move randomly within Moors-neighbors and reproduce if it can.\\
+A shark has a starvation counter (i.e. the number of cycles it can find food before starving). Sharks can die if they reach their starvation point. The first thing a shark will do is to check if it has reached the starvation point and die.\\
+If not, a shark looks around within Moore's neighborhood if there is a tuna. If yes, it will move and eat it. At the same time, if a shark can reproduce, it will reproduce by moving to the next position occupied by a tuna and leaving a new shark at its old position.\\
+If there are no near tuna, a shark will try to move randomly within Moore's neighborhood and reproduce if it can.\\
 If there are no empty place around then the shark will stay in its place and won't breed.
 
 \subsection{Hunt}
 
 \subsubsection{Prey}
-Prey is an agent that has directions on X-axis and Y-axis (-1, 0, +1) in a toroidal environment. The prey keeps on moving one or more step at a time (it depends on the parameter \textit{speed ratio between prey and predators}) in the same direction. User can change the direction of a prey by pressing  up, down, left or right button on the keyboard.\\
-If a prey reaches an obstacle it stops (direction on both X and Y axis becomes 0). 
+Prey is an agent that has directions on X-axis and Y-axis (-1, 0, +1) in a toroidal environment. The prey keeps on moving one or more step at a time (it depends on the parameter \textit{speed ratio between prey and predators}) in the same direction. The prey is guided by the user's gestures on the keyboard : he can change the direction of a prey by pressing  up, down, left or right button on the keyboard.\\
+If a prey reaches an obstacle it stops (direction on both X and Y axis becomes 0).
 
 \subsubsection{Predator}
-Predators are agents that move within Moors-neighbors in a torodial environment. Predators use Dijkstra's algorithm to choose a next position in order to catch the prey.
+Predators are agents that move within Moore's neighborhood in a torodial environment. Predators use Dijkstra's algorithm \cite{dijkstra} to choose a next position in order to catch the prey.
 
 \subsubsection{Obstacle}
 Obstacles are agents that do nothing besides occupying places inside the environment.
